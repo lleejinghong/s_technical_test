@@ -1,0 +1,51 @@
+<div class="edit-container">
+  <form class="edit-form" [formGroup]="editForm">
+    <h2>Edit User</h2>
+
+    <mat-form-field class="margin-bottom">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="id" readonly />
+    </mat-form-field>
+
+    <mat-form-field class="margin-bottom">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" placeholder="Ex. John" autocomplete="off" />
+      <mat-error *ngIf="editForm.get('firstName')?.hasError('required')">
+        First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="margin-bottom">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" placeholder="Ex. Doe" autocomplete="off" />
+      <mat-error *ngIf="editForm.get('lastName')?.hasError('required')">
+        Last Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="margin-bottom">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" readonly />
+    </mat-form-field>
+
+    <mat-form-field class="margin-bottom">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" placeholder="+1 555 555 5555" autocomplete="off" />
+      <mat-error *ngIf="editForm.get('phoneNumber')?.hasError('pattern')">
+        Please enter a valid phone number
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="margin-bottom">
+      <mat-label>Zip Code</mat-label>
+      <input matInput formControlName="zipCode" placeholder="12345 or 12345‑6789" autocomplete="off" />
+      <mat-error *ngIf="editForm.get('zipCode')?.hasError('pattern')">
+        Invalid zip code format
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="button" (click)="editUser()" [disabled]="editForm.invalid">
+      Edit
+    </button>
+  </form>
+</div>

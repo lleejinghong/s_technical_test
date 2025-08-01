@@ -1,0 +1,70 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@Web_HostAddress = https://localhost:5001
+
+@Username = administrator@localhost
+@Password = Administrator1!
+@BearerToken = <YourToken>
+
+### User Authentication and Management
+
+# Register User
+POST {{Web_HostAddress}}/ApplicationUsers/RegisterUser
+Content-Type: application/json
+
+{
+  "email": "{{Username}}",
+  "password": "{{Password}}",
+  "firstName": "Admin",
+  "lastName": "User"
+}
+
+###
+
+# Login User
+POST {{Web_HostAddress}}/ApplicationUsers/LoginUser
+Content-Type: application/json
+
+{
+  "username": "{{Username}}",
+  "password": "{{Password}}",
+  "rememberMe": true
+}
+
+###
+
+# Refresh Token
+POST {{Web_HostAddress}}/ApplicationUsers/RefreshToken
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+  "token": "{{BearerToken}}",
+  "refreshToken": ""
+}
+
+###
+
+# Get User by Email
+GET {{Web_HostAddress}}/ApplicationUsers/GetByEmail/{{Username}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# Update User
+PUT {{Web_HostAddress}}/ApplicationUsers/UpdateUser
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+  "email": "{{Username}}",
+  "firstName": "Updated",
+  "lastName": "User"
+}
+
+###
+
+# Delete User
+DELETE {{Web_HostAddress}}/ApplicationUsers/DeleteUser/{{Username}}
+Authorization: Bearer {{BearerToken}}
+
+###
